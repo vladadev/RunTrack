@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PrvaAplikacijaApp.Stranica1"
+             Title="Stranica1">
+    <VerticalStackLayout>
+        <Label 
+            Text="Sadrzaj stranice 1"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        <Button x:Name="btnOvoriStranicu2"
+                Text="Predji na stranicu 2"/>
+    </VerticalStackLayout>
+</ContentPage>
