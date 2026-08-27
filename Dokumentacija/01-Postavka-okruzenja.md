@@ -174,31 +174,68 @@ Android telefoni po fabričkom podešavanju **ne dozvoljavaju** da im računar i
 aplikacije. To se otključava režimom za programere (*Developer options*), koji je
 namerno sakriven da ga običan korisnik ne bi slučajno uključio.
 
-### 5.1 Otključavanje režima za programere
+### 5.1 ⚠️ Prvo — dva različita „Developer settings" menija
 
-1. Otvori **Podešavanja** (Settings)
-2. Idi do **O telefonu** (About phone)
-   - Na Samsung telefonima: Settings → About phone → **Software information**
-   - Na Xiaomi telefonima: Settings → About phone → **All specs**
-3. Nađi stavku **Broj verzije** (Build number) — ili **MIUI verzija** na Xiaomi-ju
-4. **Tapni je 7 puta zaredom**
-5. Tražiće ti PIN/šifru telefona
-6. Pojaviće se poruka: *„You are now a developer!"*
+Ovo je zamka u koju upada skoro svako. Na Androidu postoje **dva potpuno različita**
+menija sa sličnim imenom:
 
-### 5.2 Uključivanje USB debugging-a
+| Meni | Gde se nalazi | Šta sadrži | Da li nam treba |
+|---|---|---|---|
+| **TalkBack developer settings** | Settings → Accessibility → TalkBack → Settings → Advanced | „Display speech output", „Echo recognized speech", „Explore by touch", „Enable node tree debugging" | ❌ **NE** — ovo su podešavanja čitača ekrana za slepe osobe |
+| **Developer options** (pravi) | Settings → Additional settings → Developer options | „USB debugging", „Install via USB", „Stay awake", „OEM unlocking" | ✅ **DA** — ovo nam treba |
 
-1. Vrati se u **Podešavanja**
-2. Nađi **Opcije za programere** (Developer options)
-   - Obično je u: Settings → **System** → Developer options
-   - Na Xiaomi-ju: Settings → **Additional settings** → Developer options
-3. Uključi glavni prekidač na vrhu (ako već nije)
-4. Nađi i uključi **USB debugging** (Otklanjanje grešaka preko USB-a)
-5. Potvrdi upozorenje sa **OK**
+**Kako da znaš da si u pravom meniju:** pravi Developer options ima na vrhu veliki
+prekidač i **desetine stavki** podeljenih u sekcije (Debugging, Networking, Drawing,
+Media, Apps…). Ako vidiš samo 8-9 stavki koje sve pominju govor, TalkBack ili gestove
+— u pogrešnom si meniju.
 
-> 📱 **Xiaomi/Redmi/POCO dodatno:** moraš uključiti i **„USB debugging (Security settings)"**
-> i biti prijavljen na Mi nalog. Bez toga instalacija aplikacije neće proći.
+> 💡 Pravi **Developer options se uopšte ne prikazuje** u Podešavanjima dok ga ne
+> otključaš postupkom iz sledeće sekcije. Ako ga tražiš i ne nalaziš — to je zato
+> što još ne postoji, a ne zato što si ga promašio.
 
-### 5.3 Šta USB debugging zapravo radi
+### 5.2 Otključavanje režima za programere — realme GT Neo 2
+
+realme GT Neo 2 koristi **realme UI** (nadgradnja Androida, srodna ColorOS-u), gde je
+putanja malo drugačija nego na „čistom" Androidu — `Build number` je sakriven **jedan
+nivo dublje**, iza kartice `Version`.
+
+1. Otvori **Settings** (Podešavanja)
+2. Skroluj skroz dole → **About device** (na starijim realme UI verzijama: *About phone*)
+3. Tapni na karticu **Version**
+   > ⚠️ Ovo je korak koji većina propusti. Na realme UI-ju `Build number` **nije**
+   > odmah na ekranu „About device" — moraš prvo da uđeš u `Version`.
+4. Sada vidiš listu (Android version, Build number, Baseband version…).
+   Nađi **Build number** i **tapni ga 7 puta zaredom**
+5. Posle 3-4 tapa pojaviće se odbrojavanje: *„You are now 4 steps away from being a developer"*
+6. Tražiće ti **PIN / šifru / otisak** telefona
+7. Pojaviće se poruka: *„You are now a developer!"* / *„Developer mode has been enabled"*
+
+### 5.3 Uključivanje USB debugging-a
+
+1. Vrati se u **Settings**
+2. Idi u **Additional settings** (Dodatna podešavanja)
+   > Na realme UI 5.0 / Android 14 se ova stavka zove **System settings**
+3. Na dnu te liste sada postoji **Developer options** — otvori je
+4. Uključi glavni prekidač na vrhu ako već nije uključen
+5. Skroluj do sekcije **Debugging** i uključi:
+   - ☑️ **USB debugging** — obavezno
+   - ☑️ **Install via USB** — **takođe obavezno na realme/OPPO telefonima**
+6. Potvrdi upozorenja sa **OK**
+
+> 📱 **realme / OPPO specifičnost:** `USB debugging` sam po sebi dozvoljava računaru
+> da *komunicira* sa telefonom, ali **ne i da instalira aplikacije**. Za instalaciju
+> je potreban zaseban prekidač **`Install via USB`**. Ako ga preskočiš, `adb devices`
+> će lepo prikazati telefon, ali će Visual Studio prijaviti grešku pri deploy-u.
+>
+> Kod nekih realme UI verzija `Install via USB` traži da telefon ima **umetnut SIM
+> i aktivan mobilni internet** dok ga uključuješ (mera protiv prevara). Ako je opcija
+> zasivljena — uključi mobilne podatke i probaj ponovo.
+
+> 🔎 **Ako `Developer options` i dalje ne vidiš** u Additional settings: znači da
+> tapkanje po `Build number` nije registrovano. Vrati se na korak 5.2 i tapći
+> **brže i bez pauze** — Android broji tapove samo unutar kratkog vremenskog prozora.
+
+### 5.4 Šta USB debugging zapravo radi
 
 Otvara na telefonu kanal preko kojeg računar može da:
 
@@ -296,6 +333,17 @@ Redom probaj:
 ```
 
 5. Instaliraj USB drajver proizvođača telefona (Samsung: „Samsung USB Driver for Mobile Phones")
+
+### U „Developer settings" nema opcije USB debugging
+
+Otvorio si **TalkBack** developer settings umesto pravih **Developer options**.
+Vidi [sekciju 5.1](#51-️-prvo--dva-različita-developer-settings-menija) — tamo je
+tabela po kojoj razlikuješ ta dva menija.
+
+### Telefon se vidi u `adb devices`, ali deploy iz Visual Studio-a pukne
+
+Na realme/OPPO telefonima nije dovoljan samo `USB debugging` — treba uključiti i
+**`Install via USB`** u istoj sekciji Developer options. Vidi [sekciju 5.3](#53-uključivanje-usb-debugging-a).
 
 ### `adb devices` prikazuje `unauthorized`
 

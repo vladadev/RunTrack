@@ -85,20 +85,42 @@ trening, isključiš avionski režim → trening „odleti" na server.
 
 ## 4. Plan rada (27.08. – 10.09.)
 
-| Dani | Faza | Rezultat |
+Plan je računat na **2–3 sata dnevno** (ukupno ~30 sati), jer se paralelno spremaju
+i drugi predmeti.
+
+| Dani | Faza | Rezultat na kraju faze |
 |---|---|---|
 | 27–28.08. | Postavka okruženja, Git, prvi prazan projekat | Aplikacija se pokreće na telefonu |
-| 29–30.08. | Struktura, AppShell, navigacija, stilovi i resursi | Sve stranice postoje, može se kretati kroz njih |
-| 31.08.–01.09. | MVVM, Data Binding, SQLite baza | Trening se može ručno uneti i snimiti |
-| 02–03.09. | GPS senzor, praćenje u realnom vremenu | Pravo GPS praćenje radi |
-| 04.09. | Custom kontrola — crtanje rute | Ruta se vidi na ekranu |
-| 05–06.09. | Web API (server), prijava i sesija | Server radi lokalno |
-| 07.09. | Povezivanje klijenta i servera, sinhronizacija | Klijent-server komunikacija radi |
-| 08.09. | Deploy API-ja na cloud, TabbedPage, doterivanje izgleda | Radi preko mobilnog interneta |
-| 09.09. | Testiranje, ispravke, finalna dokumentacija | Sve spremno |
-| 10.09. | **Rezerva** — namerno ostavljen prazan dan | Za nepredviđene probleme |
+| 29–30.08. | Struktura, AppShell, TabbedPage navigacija | Sve stranice postoje, može se kretati kroz njih |
+| 31.08. | Stilovi, resursi, trigeri | Aplikacija izgleda kao aplikacija, a ne kao prototip |
+| 01–02.09. | MVVM, Data Binding, SQLite baza | Trening se može ručno uneti, snimiti i prikazati u listi |
+| 03–04.09. | GPS senzor, praćenje u realnom vremenu | Pravo GPS praćenje radi |
+| 05.09. | Custom kontrola — crtanje rute | Ruta se vidi na ekranu |
+| 06–07.09. | Web API (server), prijava i sesija korisnika | Server radi lokalno |
+| 08.09. | Povezivanje klijenta i servera, sinhronizacija, rad sa fajlovima | Klijent-server komunikacija radi |
+| 09.09. | Deploy API-ja na cloud, finalna dokumentacija | Radi preko mobilnog interneta |
+| 10.09. | **Rezerva** — namerno ostavljen prazan dan | Za ono što neizbežno pukne |
 
-> ⚠️ Rezervni dan nije luksuz. U razvoju softvera uvek nešto pukne u poslednjem trenutku.
+> ⚠️ Rezervni dan nije luksuz. U razvoju softvera uvek nešto pukne u poslednjem trenutku
+> — najčešće baš ono što je nedelju dana radilo bez problema.
+
+### 4.1 Šta namerno NE radimo
+
+Da bi plan stao u 30 sati, sledeće je svesno izostavljeno. Ovo nisu propusti — ovo su
+odluke, i vredi ih znati jer bi profesor mogao da pita „zašto niste uradili X".
+
+| Izostavljeno | Zašto |
+|---|---|
+| **GPS praćenje u pozadini** (kad je aplikacija minimizovana) | Na Androidu zahteva *foreground service* sa stalnom notifikacijom i posebne dozvole — sam po sebi 5–6 sati posla. Naša aplikacija prati lokaciju dok je ekran treninga otvoren, što je za demonstraciju sasvim dovoljno. |
+| **Prikaz rute na pravoj mapi** (Google Maps) | Traži API ključ vezan za platnu karticu. Umesto toga crtamo rutu u **sopstvenoj kontroli**, što usput pokriva stavku „korisničke kontrole" iz gradiva — dakle ne gubimo ništa, nego dobijamo. |
+| **Izvoz u `.gpx` format** | Rad sa fajlovima pokrivamo jednostavnijim izvozom u `.csv` — ista stavka gradiva, upola manje posla. |
+| **Šifrovanje lozinki po standardu (bcrypt/Argon2)** | Koristimo SHA-256 sa „solju", što je dovoljno da se pokaže princip. Prava produkcijska aplikacija bi koristila bcrypt. |
+| **Automatski testovi** | Nisu deo gradiva predmeta. |
+
+> 💬 **Očekivano pitanje:** *„Zašto lokacija ne radi kad je aplikacija minimizovana?"*
+> Odgovor: zato što Android od verzije 8 ubija pozadinske procese radi štednje baterije.
+> Rešenje je *foreground service* sa trajnom notifikacijom i dozvolom
+> `ACCESS_BACKGROUND_LOCATION`, što je bilo van obima ovog projekta.
 
 ---
 
