@@ -400,6 +400,67 @@ Svaki sledeći je znatno brži. Ako je i dalje sporo, dodaj folder projekta u
 
 ---
 
+## 9. Svakodnevni rad
+
+### 9.1 Otvaranje projekta u Visual Studio-u
+
+**File → Open → Project/Solution** → izaberi `RunTrack\RunTrack.slnx`
+(ili dupli klik na taj fajl u Explorer-u).
+
+| Deo prozora | Čemu služi |
+|---|---|
+| **Solution Explorer** (desno) | Stablo fajlova — dupli klik otvara fajl |
+| **Padajući meni uređaja** (gore, pored ▶) | Bira gde se aplikacija pokreće |
+| **Output** (dole) | Poruke pri prevođenju |
+| **Error List** (dole) | Spisak grešaka, dupli klik skače na liniju |
+
+### 9.2 Gde pokrenuti aplikaciju
+
+| Izbor u meniju | Kada | Vreme |
+|---|---|---|
+| **Windows Machine** | Svakodnevni rad — provera izgleda i logike | ~10 s |
+| **RMX3370** (telefon) | GPS, senzori, finalno testiranje | ~2 min |
+
+- **F5** — prevedi, instaliraj i pokreni **sa debagerom** (breakpoint-i rade)
+- **Ctrl+F5** — pokreni **bez debagera**, osetno brže
+
+> 💡 Pravilo: sve što nije vezano za senzore razvijaj na **Windows Machine**.
+> Razlika 10 sekundi naspram 2 minuta se preko celog projekta meri satima.
+
+### 9.3 Kačenje i otkačinjanje telefona
+
+**Kad se telefon sme otkačiti:** bilo kad, osim dok traje instalacija na uređaj.
+
+- Aplikacija **ostaje instalirana** na telefonu i radi bez kabla. Kabl služi samo da
+  se **nova verzija** prebaci na telefon.
+- Pri ponovnom kačenju `adb` sam prepozna uređaj za sekund-dva. Dijalog
+  „Allow USB debugging?" se ne pojavljuje ponovo — telefon je zapamtio ključ računara
+  (zato se čekira „Always allow from this computer").
+- Ako se kabl iščupa **usred instalacije**, aplikacija ostane nedovršeno instalirana.
+  Rešenje: pokreni deploy ponovo. Ništa se trajno ne kvari.
+
+**Šta se može raditi bez telefona:**
+
+| Radnja | Bez telefona |
+|---|---|
+| Pisanje i izmena koda | ✅ |
+| Prevođenje za Android (provera grešaka) | ✅ |
+| Pokretanje Windows verzije | ✅ |
+| Dokumentacija, git commit i push | ✅ |
+| Instalacija i pokretanje na telefonu | ❌ |
+| Slikanje ekrana i čitanje grešaka sa uređaja | ❌ |
+
+### 9.4 ⚠️ Ne gradi na dva mesta istovremeno
+
+Ako Visual Studio i komandna linija grade projekat u isto vreme, oba pišu u iste
+`bin/` i `obj/` foldere. Windows tada zaključa fajl, a build pukne greškom tipa
+*„The process cannot access the file … because it is being used by another process"*.
+
+**Rešenje ako se desi:** sačekaj da se jedan build završi, pa pokreni drugi. Ako
+greška ostane, zatvori Visual Studio, obriši `bin/` i `obj/` i prevedi ponovo.
+
+---
+
 ## Šta dalje
 
 Kada ovaj dokument odradiš do kraja i sve tri provere iz [Koraka 2](#4-korak-2--provera-instalacije)
