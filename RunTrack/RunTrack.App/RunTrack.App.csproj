@@ -27,11 +27,11 @@
 		       <MauiXaml Update="MyPage.xaml" Inflator="Runtime" /> (force runtime inflation) -->
 		<MauiXamlInflator>SourceGen</MauiXamlInflator>
 
-		<!-- Display name -->
-		<ApplicationTitle>RunTrack.App</ApplicationTitle>
+		<!-- Ime koje se vidi ispod ikonice na telefonu -->
+		<ApplicationTitle>RunTrack</ApplicationTitle>
 
-		<!-- App Identifier -->
-		<ApplicationId>com.companyname.runtrack.app</ApplicationId>
+		<!-- Jedinstveni identifikator aplikacije na uredjaju -->
+		<ApplicationId>rs.vladadev.runtrack</ApplicationId>
 
 		<!-- Versions -->
 		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
