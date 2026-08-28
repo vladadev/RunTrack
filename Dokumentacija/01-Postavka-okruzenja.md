@@ -288,6 +288,41 @@ R58N12ABCDE     device
 
 ---
 
+## 6.1 Alternativa — bežično povezivanje (Wireless debugging)
+
+Ako kabl pravi problem, Android 11 i noviji podržavaju povezivanje **preko WiFi-ja**,
+bez kabla. realme GT Neo 2 ovo podržava.
+
+> ⚠️ Za razvoj je odlično, ali **za ispit obavezno reši i kabl** — školski WiFi može
+> da blokira komunikaciju između uređaja, ili da ga uopšte nema.
+
+**Uslov:** telefon i laptop moraju biti na **istoj WiFi mreži**.
+
+1. Na telefonu: Developer options → **Wireless debugging** → uključi
+2. Tapni na sam natpis „Wireless debugging" (ne na prekidač) da uđeš u meni
+3. Izaberi **Pair device with pairing code**
+4. Pojaviće se šestocifreni kod i adresa oblika `192.168.1.55:37421`
+5. Na računaru, u PowerShell-u (adresu i kod prepiši sa telefona):
+
+```bash
+& "C:\Program Files (x86)\Android\android-sdk\platform-tools\adb.exe" pair 192.168.1.55:37421
+```
+
+6. Kad pita `Enter pairing code:` — ukucaj šestocifreni kod sa telefona
+7. Vrati se na ekran „Wireless debugging" — tamo piše **druga** adresa i port
+   (pod „IP address & Port"). Na nju se sada kačiš:
+
+```bash
+& "C:\Program Files (x86)\Android\android-sdk\platform-tools\adb.exe" connect 192.168.1.55:41983
+```
+
+8. Provera: `adb devices` treba da prikaže uređaj sa IP adresom umesto serijskog broja
+
+> 💡 Uparivanje se radi **samo jednom**. Kasnije je dovoljna `adb connect` komanda,
+> ali se port menja pri svakom restartu telefona.
+
+---
+
 ## 7. Korak 5 — scrcpy (prikaz telefona na laptopu)
 
 Ovo **nije obavezno**, ali je jako korisno za demonstraciju na ispitu — profesor gleda
