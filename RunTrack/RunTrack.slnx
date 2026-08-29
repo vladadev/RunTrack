@@ -1,3 +1,12 @@
 <Solution>
+  <Folder Name="/Dokumentacija/">
+    <File Path="../Dokumentacija/00-Uvod-i-pregled.md" />
+    <File Path="../Dokumentacija/01-Postavka-okruzenja.md" />
+    <File Path="../Dokumentacija/02-Struktura-projekta.md" />
+  </Folder>
+  <Folder Name="/Ostalo/">
+    <File Path="../README.md" />
+    <File Path="../.gitignore" />
+  </Folder>
   <Project Path="RunTrack.App/RunTrack.App.csproj" />
 </Solution>
