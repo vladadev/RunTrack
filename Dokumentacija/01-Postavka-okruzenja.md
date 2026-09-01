@@ -402,7 +402,12 @@ Svaki sledeći je znatno brži. Ako je i dalje sporo, dodaj folder projekta u
 
 ## 9. Svakodnevni rad
 
-### 9.1 Otvaranje projekta u Visual Studio-u
+### 9.1 Otvaranje projekta
+
+Projekat se može otvoriti u **Visual Studio-u** ili u **VS Code-u** — isti fajlovi,
+nikakva konverzija, možeš se prebacivati kako ti odgovara.
+
+#### Visual Studio
 
 **File → Open → Project/Solution** → izaberi `RunTrack\RunTrack.slnx`
 (ili dupli klik na taj fajl u Explorer-u).
@@ -413,6 +418,50 @@ Svaki sledeći je znatno brži. Ako je i dalje sporo, dodaj folder projekta u
 | **Padajući meni uređaja** (gore, pored ▶) | Bira gde se aplikacija pokreće |
 | **Output** (dole) | Poruke pri prevođenju |
 | **Error List** (dole) | Spisak grešaka, dupli klik skače na liniju |
+
+#### VS Code
+
+Otvori **koren repozitorijuma** (`Prog. Mobilnih Aplikacija`), ne podfolder — tako
+vidiš i kod i dokumentaciju odjednom.
+
+Potrebne ekstenzije:
+
+| Ekstenzija | ID | Čemu služi |
+|---|---|---|
+| C# | `ms-dotnettools.csharp` | Osnovna podrška za C# |
+| C# Dev Kit | `ms-dotnettools.csdevkit` | Solution Explorer, upravljanje projektom |
+| **.NET MAUI** | `ms-dotnettools.maui` | **Biranje uređaja, debug na telefonu, XAML podrška** |
+
+```bash
+code --install-extension ms-dotnettools.maui
+```
+
+#### Šta se gubi prelaskom na VS Code
+
+| Mogućnost | Visual Studio | VS Code |
+|---|---|---|
+| Prevođenje i pokretanje | ✅ | ✅ |
+| Debug na telefonu | ✅ | ✅ |
+| **XAML IntelliSense** | ✅ potpun | ⚠️ slabiji |
+| **XAML Hot Reload** | ✅ pouzdan | ⚠️ ume da zakaže |
+| Potrošnja resursa | 🐌 težak | ⚡ lakši |
+
+Jedini osetan gubitak je **XAML IntelliSense**. Zato Visual Studio ostaje instaliran
+kao rezerva — ako pisanje XAML-a postane naporno, isti projekat se otvori tamo.
+
+### 9.1.1 Čitanje dokumentacije (Markdown preview)
+
+Markdown fajlovi (`.md`) su u editoru sirov tekst sa zvezdicama i crticama. Da bi se
+videli formatirano — sa tabelama, naslovima i obojenim kodom:
+
+| Editor | Prečica |
+|---|---|
+| **VS Code** | `Ctrl+K` pa `V` — preview **pored** koda |
+| **VS Code** | `Ctrl+Shift+V` — preview u **novom tabu** |
+| **Visual Studio** | preview panel se sam otvara sa desne strane |
+
+U VS Code-u postoji i ikonica 📖 („Open Preview to the Side") u gornjem desnom uglu
+editora dok je `.md` fajl otvoren. Ne zahteva nikakvu ekstenziju.
 
 ### 9.2 Gde pokrenuti aplikaciju
 
