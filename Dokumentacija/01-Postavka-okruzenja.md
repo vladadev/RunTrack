@@ -430,11 +430,17 @@ Potrebne ekstenzije:
 |---|---|---|
 | C# | `ms-dotnettools.csharp` | Osnovna podrška za C# |
 | C# Dev Kit | `ms-dotnettools.csdevkit` | Solution Explorer, upravljanje projektom |
-| **.NET MAUI** | `ms-dotnettools.maui` | **Biranje uređaja, debug na telefonu, XAML podrška** |
+| **.NET MAUI** | `ms-dotnettools.dotnet-maui` | **Biranje uređaja, debug na telefonu, XAML IntelliSense, Hot Reload** |
 
 ```bash
-code --install-extension ms-dotnettools.maui
+code --install-extension ms-dotnettools.dotnet-maui
 ```
+
+> ⚠️ Obrati pažnju na tačan ID — **`dotnet-maui`**, ne `maui`. Sa pogrešnim imenom
+> VS Code javlja `Extension 'ms-dotnettools.maui' not found`.
+
+> 💡 MAUI ekstenzija sama povlači `C# Dev Kit` i `C#` ekstenziju, pa je dovoljno
+> instalirati samo nju.
 
 #### Šta se gubi prelaskom na VS Code
 
