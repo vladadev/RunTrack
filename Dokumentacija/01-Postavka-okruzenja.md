@@ -444,16 +444,18 @@ code --install-extension ms-dotnettools.dotnet-maui
 
 #### Šta se gubi prelaskom na VS Code
 
-| Mogućnost | Visual Studio | VS Code |
+| Mogućnost | Visual Studio | VS Code + MAUI ekstenzija |
 |---|---|---|
 | Prevođenje i pokretanje | ✅ | ✅ |
-| Debug na telefonu | ✅ | ✅ |
-| **XAML IntelliSense** | ✅ potpun | ⚠️ slabiji |
-| **XAML Hot Reload** | ✅ pouzdan | ⚠️ ume da zakaže |
+| Debug na telefonu, breakpoint-i | ✅ | ✅ |
+| XAML IntelliSense | ✅ | ✅ |
+| XAML Hot Reload | ✅ | ✅ |
+| Solution Explorer | ✅ | ✅ (kroz C# Dev Kit) |
 | Potrošnja resursa | 🐌 težak | ⚡ lakši |
 
-Jedini osetan gubitak je **XAML IntelliSense**. Zato Visual Studio ostaje instaliran
-kao rezerva — ako pisanje XAML-a postane naporno, isti projekat se otvori tamo.
+Otkad je MAUI ekstenzija izašla iz preview faze, razlika je mala — VS Code pokriva
+sve što nam za ovaj projekat treba. Visual Studio ipak ostaje instaliran kao rezerva:
+ako se pred ispit pojavi problem sa prevođenjem, dobro je imati drugi alat pri ruci.
 
 ### 9.1.1 Čitanje dokumentacije (Markdown preview)
 
