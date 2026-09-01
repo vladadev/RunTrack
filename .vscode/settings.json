@@ -1,0 +1,19 @@
+{
+  // U korenu foldera postoje dva solution-a (nas projekat i primer sa
+  // predavanja). Bez ove linije C# Dev Kit ne zna koji da ucita, pa se
+  // MAUI birac uredjaja ne pojavljuje u statusnoj traci.
+  "dotnet.defaultSolution": "RunTrack/RunTrack.slnx",
+
+  // Primer sa predavanja i build folderi ne treba da zatrpavaju pretragu
+  "search.exclude": {
+    "**/bin": true,
+    "**/obj": true,
+    "Primer sa predavanja/**": true
+  },
+
+  // Ne prati izmene u generisanim folderima (manje trosi procesor)
+  "files.watcherExclude": {
+    "**/bin/**": true,
+    "**/obj/**": true
+  }
+}

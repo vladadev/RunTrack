@@ -23,7 +23,9 @@
 
 # Rider / VS Code
 .idea/
-.vscode/
+# Paznja: mora ".vscode/*", a NE ".vscode/". Ako se iskljuci ceo folder,
+# git u njega ni ne ulazi, pa izuzeci ispod (!) nemaju efekta.
+.vscode/*
 !.vscode/launch.json
 !.vscode/settings.json
 
